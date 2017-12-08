@@ -1,1 +1,5 @@
+qemu-system-x86_64 <file>
+
+nasm -f bin -o print-char.bin print-char.nasm
+
 as -o print.o print.s; ld -o print.elf print.o; objcopy -O binary print.elf print.bin
