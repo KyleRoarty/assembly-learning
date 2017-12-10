@@ -3,3 +3,6 @@ qemu-system-x86_64 <file>
 nasm -f bin -o print-char.bin print-char.nasm
 
 as -o print.o print.s; ld -o print.elf print.o; objcopy -O binary print.elf print.bin
+
+as -o print.o -g print.s; ld --oformat binary -o print.bin print.o
+as -o print2.o -g print2.s; ld --oformat binary -o print2.bin print2.o -Ttext 0x7c00
