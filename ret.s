@@ -11,10 +11,10 @@ hellolen:
 
 _start:
 
-	mov		$1, %rax
-	mov		$1, %rdi
-	mov		$hellostr, %rsi
-	mov		$len, %rdx
+	movq	$1, %rax
+	movq	$1, %rdi
+	movq	$hellostr, %rsi
+	movq	$len, %rdx
 	syscall
 
 
