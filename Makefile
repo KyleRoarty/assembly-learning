@@ -22,3 +22,6 @@ bl: bl_dbg
 
 clean:
 	rm -f $(P).o $(P).bin
+
+cleanall:
+	rm -f *.o *.bin
