@@ -2,8 +2,8 @@ AS = as
 LD = ld
 
 ASFLAGS = -g
-LDFLAGS = --oformat binary
-BLFLAGS = $(LDFLAGS) -Ttext 0x7c00
+LDFLAGS =
+BLFLAGS = $(LDFLAGS) --oformat binary -Ttext 0x7c00
 
 $(P): $(P).s
 	 $(AS) $(ASFLAGS) $(P).s -o $(P).o
