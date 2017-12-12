@@ -1,0 +1,10 @@
+AS = as
+LD = ld
+
+ASFLAGS = -g -nostartfiles
+LDFLAGS =
+BLFLAGS = $(LDFLAGS) --oformat binary -Ttext 0x7c00
+
+$(P):
+
+
