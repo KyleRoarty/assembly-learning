@@ -1,0 +1,9 @@
+AS = as
+CC = ld
+
+ASFLAGS = -g
+LDFLAGS = -nostartfiles --oformat binary -Ttext 0x7c00
+LDLIBS =
+
+%.bin: %.o
+	$(CC) $(LDFLAGS) $< $(LDLIBS) -o $@
