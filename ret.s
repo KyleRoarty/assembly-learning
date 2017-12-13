@@ -1,14 +1,14 @@
-.extern print_helloworld
+.extern printstdout
 .global _start
 
 .data
 
 nl:
-	.ascii "\n"
+	.asciz "\n"
 nlend:
 	.equ len, nlend - nl
 hellostart:
-	.ascii "Hello, World!\n"
+	.asciz "Hello, World!\n"
 helloend:
 	.equ hello_len, helloend - hellostart
 
@@ -16,37 +16,24 @@ helloend:
 
 _start:
 	movq	(%rsp), %r12
-	movq	$0, %r13
 
 	movq	$hellostart, %rdi
-	movq	$hello_len, %rsi
-	call print_helloworld
+	call	printstdout
 
+    movq    $0, %r13
 .L_loop_start:
-	movq	$1, %rax
-	movq	$1, %rdi
-	movq	8(%rsp, %r13, 8), %rsi
-	movq	%rsi, %r10
+	movq	8(%rsp, %r13, 8), %rdi
+	call	printstdout
 
-.L_str_len:
-	cmpb $0, (%r10)
-	je .L_str_len_end
-	inc %r10
-	jmp .L_str_len
-.L_str_len_end:
-	sub %rsi, %r10
-	movq %r10, %rdx
-	syscall
-
-	movq	$1, %rax
-	movq	$1, %rdi
-	movq	$nl, %rsi
-	movq	$len, %rdx
-	syscall
+	# Print newline
+	movq	$nl, %rdi
+	call	printstdout
 
 	inc %r13
 	cmpq %r12, %r13
 	jne .L_loop_start
+
+.L_loop_end:
 
 	movq	$60, %rax
 	movq	$0x0, %rdi
