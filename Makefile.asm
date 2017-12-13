@@ -3,7 +3,7 @@ CC = cc
 
 ASFLAGS = -g
 LDFLAGS = -nostartfiles
-LDLIBS =
+LDLIBS = test.o
 
-%.bin: %.o
+%.bin: %.o $(LDLIBS)
 	$(CC) $(LDFLAGS) $< $(LDLIBS) -o $@

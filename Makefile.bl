@@ -5,5 +5,5 @@ ASFLAGS = -g
 LDFLAGS = -nostartfiles --oformat binary -Ttext 0x7c00
 LDLIBS =
 
-%.bin: %.o
+%.bin: %.o $(LDLIBS)
 	$(CC) $(LDFLAGS) $< $(LDLIBS) -o $@
