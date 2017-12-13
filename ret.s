@@ -1,17 +1,26 @@
+.extern print_helloworld
+.global _start
+
 .data
 
 nl:
 	.ascii "\n"
 nlend:
 	.equ len, nlend - nl
+hellostart:
+	.ascii "Hello, World!\n"
+helloend:
+	.equ hello_len, helloend - hellostart
 
 .text
-
-.global _start
 
 _start:
 	movq	(%rsp), %r12
 	movq	$0, %r13
+
+	movq	$hellostart, %rdi
+	movq	$hello_len, %rsi
+	call print_helloworld
 
 .L_loop_start:
 	movq	$1, %rax
