@@ -3,6 +3,7 @@
 .text
 
 .global printstdout
+.global printnum
 
 printstdout:
 	push	%r12
@@ -20,14 +21,16 @@ printstdout:
 	pop		%r12
 	ret
 
-
 _strlen:
-	movq	%rdi, %r10
+	xorq	%rcx, %rcx
 	xorb	%al, %al
+
+	not		%rcx
 
 	cld
 	repne scasb
 
-	subq %r10, %rdi
-	movq %rdi, %rax
+	not		%rcx
+	dec		%rcx
+	movq %rcx, %rax
 	ret
