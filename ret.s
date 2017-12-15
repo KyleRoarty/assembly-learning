@@ -1,4 +1,6 @@
 .extern printstdout
+.extern brkNum
+
 .global _start
 
 .data
@@ -17,7 +19,11 @@ helloend:
 _start:
 	movq	(%rsp), %r12
 
-	movq	$hellostart, %rdi
+	movq	(%rsp), %rdi
+	call	brkNum
+
+	# Print newline
+	movq	$nl, %rdi
 	call	printstdout
 
     movq    $0, %r13
